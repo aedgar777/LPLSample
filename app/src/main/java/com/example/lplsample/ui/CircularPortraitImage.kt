@@ -15,7 +15,7 @@ import com.example.lplsample.R
 @Composable
 fun CircularPortraitImage(modifier: Modifier = Modifier,imageUri: Uri? = null) {
          AsyncImage(
-             model = imageUri ?: R.drawable.baseline_person_24, // Replace with your default
+             model = imageUri ?: R.drawable.baseline_person_24,
              contentDescription = "Profile Image",
              modifier = modifier
                  .size(40.dp)
