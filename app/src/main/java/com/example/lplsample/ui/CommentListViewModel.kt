@@ -26,18 +26,21 @@ class CommentListViewModel(private val commentInteractor: CommentInteractor) : V
         viewModelScope.launch(coroutineContext) {
             val result = commentInteractor.getPostsFromRemote()
 
-            withContext(Dispatchers.Main) {  }
-            when (result) {
-                is com.example.lplsample.domain.Result.Success -> {
-                    _uiState.value = CommentListUiState.Success(result.data)
+                when (result) {
+                    is com.example.lplsample.domain.Result.Success -> {
+                        _uiState.value = CommentListUiState.Success(result.data)
+                    }
+
+                    is com.example.lplsample.domain.Result.Error -> {
+                        _uiState.value =
+                            CommentListUiState.Error(result.exception.message ?: "Unknown Error")
+                    }
+
+                    else -> {
+                        _uiState.value = CommentListUiState.Error("Unknown Error")
+                    }
                 }
-                is com.example.lplsample.domain.Result.Error -> {
-                    _uiState.value = CommentListUiState.Error(result.exception.message ?: "Unknown Error")
-                }
-                else -> {
-                    _uiState.value = CommentListUiState.Error("Unknown Error")
-                }
-            }
+
         }
     }
 }
