@@ -1,6 +1,7 @@
 [versions]
 activityCompose = "1.10.1"
 agp = "8.9.1"
+coilCompose = "2.6.0"
 converterGson = "2.3.0"
 coroutinesVersion = "1.10.1"
 junit = "4.13.2"
@@ -25,6 +26,7 @@ androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", v
 androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "ui" }
 androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "ui" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version = "1.7.0" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 insert-koin-koin-test-junit5 = { module = "io.insert-koin:koin-test-junit5" }
 junit = { module = "junit:junit", version.ref = "junit" }

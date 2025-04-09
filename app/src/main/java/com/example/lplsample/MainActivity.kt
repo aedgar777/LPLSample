@@ -26,9 +26,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+
+
         setContent {
             val commentViewModel: CommentListViewModel by viewModel()
             val uiState: CommentListUiState by commentViewModel.uiState.collectAsState()
+            commentViewModel.getPosts()
 
 
             Column(

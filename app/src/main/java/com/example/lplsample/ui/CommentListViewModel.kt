@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 class CommentListViewModel(private val commentInteractor: CommentInteractor) : ViewModel(), CoroutineScope {
@@ -18,10 +19,6 @@ class CommentListViewModel(private val commentInteractor: CommentInteractor) : V
     val uiState: MutableStateFlow<CommentListUiState> = _uiState
 
 
-    init {
-        getPosts()
-    }
-
     fun getPosts() {
 
         _uiState.value = CommentListUiState.Loading(emptyList())
@@ -29,12 +26,16 @@ class CommentListViewModel(private val commentInteractor: CommentInteractor) : V
         viewModelScope.launch(coroutineContext) {
             val result = commentInteractor.getPostsFromRemote()
 
+            withContext(Dispatchers.Main) {  }
             when (result) {
                 is com.example.lplsample.domain.Result.Success -> {
                     _uiState.value = CommentListUiState.Success(result.data)
                 }
                 is com.example.lplsample.domain.Result.Error -> {
                     _uiState.value = CommentListUiState.Error(result.exception.message ?: "Unknown Error")
+                }
+                else -> {
+                    _uiState.value = CommentListUiState.Error("Unknown Error")
                 }
             }
         }

@@ -15,5 +15,4 @@ fun CommentList(comments: List<Comment>) {
             CommentListItem(comment)
         }
     }
-
 }

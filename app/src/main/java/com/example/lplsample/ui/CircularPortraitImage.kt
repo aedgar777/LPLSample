@@ -1,22 +1,25 @@
 package com.example.lplsample.ui
 
-import androidx.compose.foundation.Image
+import android.net.Uri
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.example.lplsample.R
 
 
 @Composable
-fun CircularPortraitImage(modifier: Modifier = Modifier) {
-    Image(
-        painter = painterResource(id = R.drawable.baseline_person_24), // Replace with your default image resource
-        contentDescription = "Default Profile Picture",
-        contentScale = ContentScale.Crop,
-        modifier = modifier
-            .clip(CircleShape)
-    )
+fun CircularPortraitImage(modifier: Modifier = Modifier,imageUri: Uri? = null) {
+         AsyncImage(
+             model = imageUri ?: R.drawable.baseline_person_24, // Replace with your default
+             contentDescription = "Profile Image",
+             modifier = modifier
+                 .size(40.dp)
+                 .clip(CircleShape),
+             contentScale = ContentScale.Crop,
+         )
 }
